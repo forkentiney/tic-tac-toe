@@ -1,0 +1,61 @@
+:root {
+  --bg-base: hsl(224 90% 5%);
+  --bg-mantle: hsl(224 70% 20%);
+  --bg-crust: hsl(224, 50%, 25%);
+  --shadow: hsl(0 0% 10%);
+  --titles: hsl(0 0% 98%);
+  --text: hsl(0 0% 90%);
+  --text-muted: hsl(0 0% 85%);
+  --primary: hsl(224 70% 60%);
+  --secondary: hsl(224 70% 80%);
+  --danger: hsl(0 75% 60%);
+  --warning: hsl(23 100% 63%);
+  --success: hsl(98 42% 32%);
+}
+
+/* 
+EB Garamond: 400-800
+Fira Sans: 100-900
+*/
+
+* {
+  margin: 0px;
+  padding: 0px; 
+  border: 0px;
+  font-size: 100%;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  color: inherit;
+  background-color: inherit;
+}
+
+body {
+  background-color: var(--bg-base);
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2 {
+  color: var(--titles);
+}
+
+h1 {
+  font-size: 44px;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
