@@ -1,4 +1,4 @@
-// Create gameboard
+// Gameboard IIFE
 const game = (() => {
   const board = [["", "", "",],
                  ["", "", "",],
@@ -6,14 +6,18 @@ const game = (() => {
   return { board };
 })();
 
+// Display Controller IIFE
+const displayController = (() => {
+
+})();
 
 // Player factory and declaration
 function createPlayer(name, symbol) {
   let score = 0;
   return { name, symbol, score };
 };
-const player1 = createPlayer("player1", 0);
-const player2 = createPlayer("player2", 1);
+const player1 = createPlayer("Player 1", 0);
+const player2 = createPlayer("Player 2", 1);
 
 // Set default player and change
 let player = player1;
@@ -47,9 +51,30 @@ function makeMove(location) {
     game.board[2][2] = player.symbol;
   } else {
     console.log("Spot taken. Move again.");
+    // Run this a second time (below) so that player is rotated back to current player
     changePlayer();
   };
   changePlayer();
+  checkResult();
 };
 
-// Testing filling gameboard
+function checkResult() {
+  let aaa = game.board[0][0] + game.board[0][1] + game.board[0][2];
+  let bbb = game.board[1][0] + game.board[1][1] + game.board[1][2];
+  let ccc = game.board[2][0] + game.board[2][1] + game.board[2][2];
+  let one = game.board[0][0] + game.board[1][0] + game.board[2][0];
+  let two = game.board[0][1] + game.board[1][1] + game.board[2][1];
+  let thr = game.board[0][2] + game.board[1][2] + game.board[2][2];
+  let rDi = game.board[0][0] + game.board[1][1] + game.board[2][2];
+  let lDi = game.board[0][2] + game.board[1][1] + game.board[2][0];
+
+  if (aaa === 0 || bbb === 0 || ccc === 0 || one === 0 || two === 0 || thr === 0 || rDi === 0 || lDi === 0) {
+    console.log("Player 1 Wins");
+  } else if (aaa === 3 || bbb === 3 || ccc === 3 || one === 3 || two === 3 || thr === 3 || rDi === 3 || lDi === 3) {
+    console.log("Player 2 Wins");
+  } else if (aaa + bbb + ccc === 5) {
+    console.log("Tie");
+  } else {
+    console.log(`${player.name}\'s turn.`);
+  };
+};
