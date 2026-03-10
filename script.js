@@ -3,15 +3,22 @@ const game = (() => {
   const board = [["", "", "",],
                  ["", "", "",],
                  ["", "", "",],];
+  const reset = () => {
+    game.board = [["", "", "",],
+                  ["", "", "",],
+                  ["", "", "",],];
+    displayController.cells.forEach(cell => cell.textContent = "");
+    player = player1
+  };
   const result = () => {
-    let aaa = board[0][0] + board[0][1] + board[0][2];
-    let bbb = board[1][0] + board[1][1] + board[1][2];
-    let ccc = board[2][0] + board[2][1] + board[2][2];
-    let one = board[0][0] + board[1][0] + board[2][0];
-    let two = board[0][1] + board[1][1] + board[2][1];
-    let thr = board[0][2] + board[1][2] + board[2][2];
-    let rDi = board[0][0] + board[1][1] + board[2][2];
-    let lDi = board[0][2] + board[1][1] + board[2][0];
+    let aaa = game.board[0][0] + game.board[0][1] + game.board[0][2];
+    let bbb = game.board[1][0] + game.board[1][1] + game.board[1][2];
+    let ccc = game.board[2][0] + game.board[2][1] + game.board[2][2];
+    let one = game.board[0][0] + game.board[1][0] + game.board[2][0];
+    let two = game.board[0][1] + game.board[1][1] + game.board[2][1];
+    let thr = game.board[0][2] + game.board[1][2] + game.board[2][2];
+    let rDi = game.board[0][0] + game.board[1][1] + game.board[2][2];
+    let lDi = game.board[0][2] + game.board[1][1] + game.board[2][0];
     if (aaa === 0 || bbb === 0 || ccc === 0 || one === 0 || two === 0 || thr === 0 || rDi === 0 || lDi === 0) {
       player1.increaseScore();
       console.log("Player 1 Wins");
@@ -24,7 +31,7 @@ const game = (() => {
       console.log(`${player.name}\'s turn.`);
     };
   };
-  return { board, result };
+  return { board, result, reset };
 })();
 
 // Player factory and declaration
@@ -59,8 +66,6 @@ function createPlayer(name, value, symbol) {
     } else if (location === "c3" && game.board[2][2] === "") {
       game.board[2][2] = value;
     } else {
-      // Run this a second time (below) so that player is rotated back to current player
-      change();
       return false;
     };
     change();
@@ -76,10 +81,12 @@ let player = player1;
 const displayController = (() => {
   const cells = document.querySelectorAll(".cell");
   cells.forEach(cell => cell.addEventListener("click", () => {
+    let symbol = player.symbol;
     if (player.move(cell.id) === false) {
       console.log("Spot taken. Move again.");
     } else {
-      cell.textContent = player.symbol;
+      cell.textContent = symbol;
     };
   }));
+  return { cells };
 })();
