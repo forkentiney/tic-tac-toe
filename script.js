@@ -75,7 +75,6 @@ let player = player1;
 // Display Controller IIFE
 const displayController = (() => {
   const cells = document.querySelectorAll(".cell");
-
   cells.forEach(cell => cell.addEventListener("click", () => {
     if (player.move(cell.id) === false) {
       console.log("Spot taken. Move again.");
