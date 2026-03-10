@@ -70,6 +70,15 @@ header {
   min-height: calc(100vh - (48px * 2 + 1em));
 }
 
+#scoreboard {
+  display: flex;
+  gap: 50vw;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 24px;
+  text-align: center;
+}
+
 #gameboard {
   display: grid;
   aspect-ratio: 1;
