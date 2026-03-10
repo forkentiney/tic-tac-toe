@@ -1,5 +1,7 @@
 // Gameboard IIFE
 const game = (() => {
+  const xScore = document.querySelector("#x");
+  const oScore = document.querySelector("#o");
   const board = [["", "", "",],
                  ["", "", "",],
                  ["", "", "",],];
@@ -21,9 +23,11 @@ const game = (() => {
     let lDi = game.board[0][2] + game.board[1][1] + game.board[2][0];
     if (aaa === 0 || bbb === 0 || ccc === 0 || one === 0 || two === 0 || thr === 0 || rDi === 0 || lDi === 0) {
       player1.increaseScore();
+      xScore.textContent = `Score: ${player1.displayScore()}`;
       console.log("Player 1 Wins");
     } else if (aaa === 3 || bbb === 3 || ccc === 3 || one === 3 || two === 3 || thr === 3 || rDi === 3 || lDi === 3) {
       player2.increaseScore();
+      oScore.textContent = `Score: ${player2.displayScore()}`;
       console.log("Player 2 Wins");
     } else if (aaa + bbb + ccc === 4) {
       console.log("Tie");
