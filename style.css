@@ -68,15 +68,28 @@ header {
 
 #body {
   min-height: calc(100vh - (48px * 2 + 1em));
+  padding: 8px;
 }
 
 #scoreboard {
   display: flex;
-  gap: 25vw;
+  gap: 30vw;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 1em 24px;
   text-align: center;
+}
+
+button {
+  padding: 12px 24px;
+  border: 2px solid var(--secondary);
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px var(--shadow);
+  background-color: var(--bg-mantle);
+}
+
+button:hover {
+  background-color: var(--bg-crust);
 }
 
 #gameboard {
@@ -84,6 +97,7 @@ header {
   aspect-ratio: 1;
   grid-template-columns: repeat(3, minmax(24px, 150px));
   grid-template-rows: repeat(3, minmax(24px, 150px));
+  margin: 3em 0;
 }
 
 .cell {
