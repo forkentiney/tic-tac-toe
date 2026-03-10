@@ -28,7 +28,7 @@ const game = (() => {
 })();
 
 // Player factory and declaration
-function createPlayer(name, symbol) {
+function createPlayer(name, value, symbol) {
   let score = 0;
   const displayScore = () => score;
   const increaseScore = () => { score++; };
@@ -41,38 +41,46 @@ function createPlayer(name, symbol) {
   };
   const move = (location) => {
     if (location === "a1" && game.board[0][0] === "") {
-      game.board[0][0] = symbol;
+      game.board[0][0] = value;
     } else if (location === "a2" && game.board[0][1] === "") {
-      game.board[0][1] = symbol;
+      game.board[0][1] = value;
     } else if (location === "a3" && game.board[0][2] === "") {
-      game.board[0][2] = symbol;
+      game.board[0][2] = value;
     } else if (location === "b1" && game.board[1][0] === "") {
-      game.board[1][0] = symbol;
+      game.board[1][0] = value;
     } else if (location === "b2" && game.board[1][1] === "") {
-      game.board[1][1] = symbol;
+      game.board[1][1] = value;
     } else if (location === "b3" && game.board[1][2] === "") {
-      game.board[1][2] = symbol;
+      game.board[1][2] = value;
     } else if (location === "c1" && game.board[2][0] === "") {
-      game.board[2][0] = symbol;
+      game.board[2][0] = value;
     } else if (location === "c2" && game.board[2][1] === "") {
-      game.board[2][1] = symbol;
+      game.board[2][1] = value;
     } else if (location === "c3" && game.board[2][2] === "") {
-      game.board[2][2] = symbol;
+      game.board[2][2] = value;
     } else {
-      console.log("Spot taken. Move again.");
       // Run this a second time (below) so that player is rotated back to current player
       change();
+      return false;
     };
     change();
     game.result();
   };
-  return { name, symbol, displayScore, move, change, increaseScore };
+  return { name, value, symbol, displayScore, move, change, increaseScore };
 };
-const player1 = createPlayer("Player 1", 0);
-const player2 = createPlayer("Player 2", 1);
+const player1 = createPlayer("Player 1", 0, "X");
+const player2 = createPlayer("Player 2", 1, "O");
 let player = player1;
 
 // Display Controller IIFE
 const displayController = (() => {
+  const cells = document.querySelectorAll(".cell");
 
+  cells.forEach(cell => cell.addEventListener("click", () => {
+    if (player.move(cell.id) === false) {
+      console.log("Spot taken. Move again.");
+    } else {
+      cell.textContent = player.symbol;
+    };
+  }));
 })();
