@@ -69,6 +69,53 @@ header {
   min-height: calc(100vh - (48px * 2 + 1em));
 }
 
+#gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+}
+
+.cell {
+  height: 150px;
+  width: 150px;
+}
+
+#a1 {
+  border-right: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+#a2 {
+  border: 2px solid var(--primary);
+  border-top: none;
+}
+#a3 {
+  border-left: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+#b1 {
+  border: 2px solid var(--primary);
+  border-left: none;
+}
+#b2 {
+  border: 2px solid var(--primary);
+}
+#b3 {
+  border: 2px solid var(--primary);
+  border-right: none;
+}
+#c1 {
+  border-top: 2px solid var(--primary);
+  border-right: 2px solid var(--primary);
+}
+#c2 {
+  border: 2px solid var(--primary);
+  border-bottom: none;
+}
+#c3 {
+  border-top: 2px solid var(--primary);
+  border-left: 2px solid var(--primary);
+}
+
 .flex-centered {
   display: flex;
   flex-direction: column;
