@@ -78,6 +78,7 @@ header {
 .cell {
   height: 150px;
   width: 150px;
+  font-size: 72px;
 }
 
 #a1 {
