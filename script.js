@@ -83,7 +83,9 @@ let player = player1;
 
 // Display Controller IIFE
 const displayController = (() => {
+  const reset = document.querySelector("#reset");
   const cells = document.querySelectorAll(".cell");
+  reset.addEventListener("click", game.reset);
   cells.forEach(cell => cell.addEventListener("click", () => {
     let symbol = player.symbol;
     if (player.move(cell.id) === false) {

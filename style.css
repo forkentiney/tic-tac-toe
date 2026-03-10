@@ -72,7 +72,7 @@ header {
 
 #scoreboard {
   display: flex;
-  gap: 50vw;
+  gap: 25vw;
   justify-content: center;
   align-items: center;
   margin: 1em 24px;
